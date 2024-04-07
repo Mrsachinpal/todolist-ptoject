@@ -1,0 +1,17 @@
+<%-include('./partials/header')%>
+  <%-include('./partials/navbar')%>
+
+        
+  <div class="container mt-5">
+     
+
+    <% for(let item of items) { %>
+    <ul class="list-group mt-4" id="todoList">
+        <li class="list-group-item d-flex justify-content-start align-items-center">
+            <span class="dot"></span> 
+            <%= item.listitem %>
+            
+        </li>
+    </ul>
+    <% } %>
+</div>

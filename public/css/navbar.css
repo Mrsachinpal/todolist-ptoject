@@ -1,0 +1,13 @@
+.navbar-brand {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
