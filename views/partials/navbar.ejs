@@ -1,7 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<%-include('header')%>
+
+<nav class="navbar navbar-expand-lg navcolor" style="color: white">
   <div class="container">
     <!-- Brand and toggle button -->
-    <a class="navbar-brand" href="#">Todo wala</a>
+    <a class="navbar-brand" href="#" style="color: white">Todo wala</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,30 +12,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/home">Home</a>
+          <a class="nav-link" href="/home" style="color: white">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/show">Add Item</a>
+          <a class="nav-link" href="/show" style="color: white">Add Item</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-       <%if(!currentUser){%>
+        <%if(!currentUser){%>
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a> 
+          <a class="nav-link" href="/login" style="color: white">Login</a> 
         </li>
-      <%}else{%>
+        <%}else{%>
         <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link" href="/logout" style="color: white">Logout</a>
         </li>
-      <%}%>
-      <%if(currentUser){%>
+        <%}%>
+        <%if(currentUser){%>
         <li class="nav-item">
-          <a class="nav-link" href="/profile"><span class="material-icons">account_circle</span></a>
+          <a class="nav-link" href="#" style="color: white"><span class="material-icons">account_circle</span></a>
         </li>
-      <%}%>
-
+        <%}%>
       </ul>
     </div>
   </div>
 </nav>
 
+
+<%-include('footer')%>

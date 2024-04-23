@@ -1,5 +1,7 @@
 <%-include('./partials/header')%>
 <%-include('./partials/navbar')%>
+<%-include('./partials/flash')%>
+
 
 
 <body>
@@ -10,6 +12,15 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <input type="text" class="form-control" name="listitem" required id="listitem" placeholder="Add Your List "  value="<%=foundList.listitem%>">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select class="form-control" name="priority" required id="prioritySelect">
+                        <option value="low" style="background-color: #008000; color: white;">Low Priority</option>
+                        <option value="medium" style="background-color: #FFFF00;">Medium Priority</option>
+                        <option value="high"  style="background-color: #FF0000;  color: white;">High Priority</option>
+                    </select>
                 </div>
             </div>
             
@@ -29,3 +40,4 @@
     <% } %>
 </div>
 
+<%-include('./partials/footer')%>

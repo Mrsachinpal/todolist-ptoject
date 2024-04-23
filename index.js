@@ -6,6 +6,7 @@ const methodOverride=require('method-override')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const session = require('express-session');
+const flash=require('connect-flash')
 
 
 const pages=require('./routes/pages')
@@ -13,9 +14,9 @@ const auth=require('./routes/auth')
 const User = require('./models/Users');
 const seedDb=require('./seed');
 
-
+let Url='mongodb+srv://sachin:uTrs1QS7xml5jRjf@cluster0.amqiyir.mongodb.net/todolist?retryWrites=true&w=majority'
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://127.0.0.1:27017/todolist')
+mongoose.connect(Url)
     .then(() => console.log('Db connected'))
     .catch((err) => console.log("error is : ", err))
 
@@ -39,6 +40,10 @@ let configSession = {
     }
 }
 app.use(session(configSession));
+app.use(flash())
+
+
+  
 
 // use static authenticate method of model in LocalStrategy
 app.use(passport.initialize()); //password
@@ -48,7 +53,12 @@ passport.use(new LocalStrategy(User.authenticate())); //password
 passport.serializeUser(User.serializeUser());   //password
 passport.deserializeUser(User.deserializeUser());   //password
 
-
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+  });
 app.use((req,res,next)=>{
     res.locals.currentUser=req.user;
     next();    
@@ -57,7 +67,7 @@ app.use((req,res,next)=>{
 app.use(pages);
 app.use(auth);
 
-
 app.listen(8080, () => {
-    console.log("connect at port:8080");
+    console.log("connect at port:8080 and Databse name is todolist");
 })
+

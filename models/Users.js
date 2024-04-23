@@ -17,9 +17,11 @@ const userSchema=new mongoose.Schema({
         type: String,
         trim: true,
         require:true
-    }
+    },
+    
 
 })
+
 
 
 userSchema.plugin(passportLocalMongoose);

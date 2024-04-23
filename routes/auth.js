@@ -4,17 +4,33 @@ const passport = require('passport');
 const User = require('../models/Users');
 
 router.get('/login/register', (req, res) => {
-    res.render('./auth/register')
+    try {
+        res.render('./auth/register')
+    }
+    catch (e) {
+        res.status(500).render('error', { err: e.message });
+    }
 })
 
 router.post('/login/register', async (req, res) => {
-    let { email, name, phone, username, password } = req.body
-    let user = new User({ username, name, email, phone });
-    let newUser=await User.register(user, password)
-    res.redirect('/login');
+    try {
+        let { email, name, phone, username, password } = req.body
+        let user = new User({ username, name, email, phone });
+        let newUser = await User.register(user, password)
+        req.flash('success', 'Successfully registered!')
+        res.redirect('/login');
+    }
+    catch (e) {
+        res.status(500).render('error', { err: e.message })
+    }
 })
 router.get('/login', (req, res) => {
-    res.render('./auth/login')
+    try {
+        res.render('./auth/login')
+    }
+    catch (e) {
+        res.status(500).render('error', { err: e.message });
+    }
 })
 
 router.post('/login',
@@ -24,6 +40,7 @@ router.post('/login',
             failureMessage: true
         }),
     function (req, res) {
+        req.flash('success',"Welcome back!")
         res.redirect('/home')
     }
 )
@@ -41,11 +58,13 @@ router.post('/login',              //------- check login details if correct then
     }
 )
 
-router.get('/logout',(req,res)=>{{
-    req.logout(()=>{
-        res.redirect('/login')
-    })
-}})
+router.get('/logout', (req, res) => {
+    {
+        req.logout(() => {
+            res.redirect('/login')
+        })
+    }
+})
 
 
 
