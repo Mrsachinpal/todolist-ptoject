@@ -15,7 +15,7 @@ const User = require('./models/Users');
 const seedDb=require('./seed');
 
 let Url='mongodb+srv://sachin:uTrs1QS7xml5jRjf@cluster0.amqiyir.mongodb.net/todolist?retryWrites=true&w=majority'
-mongoose.set('strictQuery', true);
+// mongoose.set('strictQuery', true);
 mongoose.connect(Url)
     .then(() => console.log('Db connected'))
     .catch((err) => console.log("error is : ", err))
