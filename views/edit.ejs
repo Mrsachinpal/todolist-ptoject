@@ -1,43 +1,107 @@
 <%-include('./partials/header')%>
-<%-include('./partials/navbar')%>
-<%-include('./partials/flash')%>
+    <%-include('./partials/navbar')%>
+        <%-include('./partials/flash')%>
 
 
 
-<body>
-  <div class="container mt-5">
-    <!-- Add Todo Form -->
-    <form id="addTodoForm" action="/show/<%=foundList._id%>/edit?_method=PATCH" method="POST">
-        <div class="form-row">
-            <div class="col-md-8">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="listitem" required id="listitem" placeholder="Add Your List "  value="<%=foundList.listitem%>">
+            <body>
+                <div class="container ">
+
+                    <h2 class="mt-5 mb-4"> Edit Your List </h2>
+
+                    <!-- Add Todo Form -->
+                    <form id="addTodoForm" action="/show/<%=foundList._id%>/edit?_method=PATCH" method="POST">
+                        <div class="row ">
+
+                            <div class="col-lg-8 col-md-9 col-sm-12 mb-2">
+                                <textarea type="text" name="listitem" id="floatingTextarea" cols="30" required rows="1"
+                                    placeholder="Enter Text " class="form-control"> <%=foundList.listitem%> </textarea>
+                            </div>
+
+                            <div class="col-lg-4 col-md-3 col-sm-12 mb-2">
+                                <select class="form-control " name="priority" required id="prioritySelect">
+                                    <option value="low">Low Priority</option>
+                                    <option value="medium">Medium Priority</option>
+                                    <option value="high">High Priority</option>
+                                </select>
+                            </div>
+
+                            <div class="mt-2">
+                                <button type="submit" class="btn btn-primary">Add Todo</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="mt-4">
+                        <% for(let item of items) { %>
+
+                            <% if(item.priority==="low" ){ %>
+                                <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
+                                    <div class="row 3">
+                                        <div class="col-lg-8 col-md-9 col-sm-12 ">
+                                            <%= item.listitem %>
+                                        </div>
+                                        <div class="priority-div col-lg-4 col-md-3 col-sm-12 ">
+                                            <div class="row">
+                                                <div class="col-12" id="feature-div">
+                                                    <a href="/show/<%= item._id %>/edit"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
+
+                                                </div>
+                                                <div>
+                                                    <b>Medium Priority</b>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}else if(item.priority==="medium" ){%>
+                                    <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
+                                        <div class="row 3">
+                                            <div class="col-lg-8 col-md-9 col-sm-12 ">
+                                                <%= item.listitem %>
+                                            </div>
+                                            <div class="priority-div col-lg-4 col-md-3 col-sm-12 ">
+                                                <div class="row">
+                                                    <div class="col-12" id="feature-div">
+                                                        <a href="/show/<%= item._id %>/edit"><i
+                                                                class="fa-solid fa-pen-to-square"></i></a>
+
+                                                    </div>
+                                                    <div>
+                                                        <b>Medium Priority</b>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%}else if(item.priority==="high" ){%>
+                                        <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
+                                            <div class="row 3">
+                                                <div class="col-lg-8 col-md-9 col-sm-12 ">
+                                                    <%= item.listitem %>
+                                                </div>
+                                                <div class="priority-div col-lg-4 col-md-3 col-sm-12 ">
+                                                    <div class="row">
+                                                        <div class="col-12" id="feature-div">
+                                                            <a href="/show/<%= item._id %>/edit"><i
+                                                                    class="fa-solid fa-pen-to-square"></i></a>
+
+                                                        </div>
+                                                        <div>
+                                                            <b>High Priority</b>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%}%>
+  <% } %>
+
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <select class="form-control" name="priority" required id="prioritySelect">
-                        <option value="low" style="background-color: #008000; color: white;">Low Priority</option>
-                        <option value="medium" style="background-color: #FFFF00;">Medium Priority</option>
-                        <option value="high"  style="background-color: #FF0000;  color: white;">High Priority</option>
-                    </select>
-                </div>
-            </div>
-            
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
 
-    <!-- Todo List -->
-    <% for(let item of items) { %>
-    <ul class="list-group mt-4" id="todoList">
-        <li class="list-group-item d-flex justify-content-start align-items-center">
-            <span class="dot"></span> <!-- Dot -->
-            <%=item.listitem %>
-           
-        </li>
-    </ul>
-    <% } %>
-</div>
-
-<%-include('./partials/footer')%>
+                <%-include('./partials/footer')%>

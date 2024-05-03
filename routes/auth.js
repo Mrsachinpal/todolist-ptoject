@@ -40,7 +40,8 @@ router.post('/login',
             failureMessage: true
         }),
     function (req, res) {
-        req.flash('success',"Welcome back!")
+        
+        req.flash('success',`Welcome back! `)
         res.redirect('/home')
     }
 )

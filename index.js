@@ -11,6 +11,8 @@ const flash=require('connect-flash')
 
 const pages=require('./routes/pages')
 const auth=require('./routes/auth')
+const profile=require('./routes/profile')
+
 const User = require('./models/Users');
 const seedDb=require('./seed');
 
@@ -21,6 +23,8 @@ mongoose.connect(Url)
     .catch((err) => console.log("error is : ", err))
 
 app.set('view engine', 'ejs');
+
+
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static(path.join(__dirname,'public')));
 
@@ -66,6 +70,7 @@ app.use((req,res,next)=>{
 
 app.use(pages);
 app.use(auth);
+app.use(profile)
 
 app.listen(8080, () => {
     console.log("connect at port:8080 and Databse name is todolist");
