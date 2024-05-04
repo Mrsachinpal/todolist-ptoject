@@ -1,46 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TODO LIST</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0-beta1/css/bootstrap.min.css" />
+
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Freeman&family=Mukta:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
 </head>
 <style>
-  .priority-div{
+  .priority-div {
     font-size: small;
     text-align: right;
   }
-  #feature-div{
+
+  #feature-div {
     font-size: large;
   }
-  #feature-div button{
+  h1{
+    font-family:"Freeman", sans-serif;
+  }
+  nav{
+    font-family:"Freeman", sans-serif;
+  }
+
+
+  #feature-div button {
     font-size: large;
     border: none;
     background-color: transparent;
     color: orangered;
   }
-#list:hover{
-  background-color: rgb(243, 241, 239);
-}
-#navbar-drop-1{
-  margin-right: 0.8rem;
-}
-/* window is 600px or smaller */
-@media only screen and (max-width: 576px) {
-  .priority-div{
-   text-align: right;
-  }
- 
 
-}
-@media only screen and (max-width: 768px) {
-  .priority-div{
-   text-align: right;
+  #list:hover {
+    background-color: rgb(243, 241, 239);
   }
-}
 
+  #navbar-drop-1 {
+    margin-right: 0.8rem;
+  }
+
+  /* window is 600px or smaller */
+  @media only screen and (max-width: 576px) {
+    .priority-div {
+      text-align: right;
+    }
+
+
+  }
+
+  @media only screen and (max-width: 768px) {
+    .priority-div {
+      text-align: right;
+    }
+  }
 </style>
 
 <body class="d-flex flex-column min-vh-100">

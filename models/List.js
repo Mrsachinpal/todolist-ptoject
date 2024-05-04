@@ -10,6 +10,9 @@ const listSchema = new mongoose.Schema({
     priority:{
         type:String,
     },
+    listStatus:{
+        type:String,
+    },
     author:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'

@@ -1,49 +1,65 @@
 <%-include('./partials/header')%>
     <%-include('./partials/navbar')%>
-            <%-include('./partials/flash')%>
+        <%-include('./partials/flash')%>
 
 
-           
-        <h1 class="text-center mt-5 mb-4">Your Priortize work list </h1>
+
+            <h1 class="text-center mt-5 mb-4">Your Priortize work list </h1>
             <% for(let item of items) { %>
 
-                <% if(item.priority==="low"){ %>
-                <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
-                    <div class="row 3">
-                        <div class="col-lg-8 col-md-9 col-sm-12 ">
-                            <%= item.listitem %>
-                        </div>
-                        <div class="priority-div col-lg-4 col-md-3 col-sm-12 ">
-                            <b>Low Priority</b>
-                        </div>
-                    </div>
-                </div>
-                <%}else if(item.priority==="medium"){%>
+                <% if(item.priority==="low" ){ %>
                     <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
                         <div class="row 3">
                             <div class="col-lg-8 col-md-9 col-sm-12 ">
-                                <%= item.listitem %>
+                                <%if(item.listStatus==="process"){%>
+                                    <span style="font-size: x-small;"><span class="fa-solid fa-circle-dot" title="In process" style="color: green; font-size: small;"></span> </span>
+                                    <%}else{%>
+                                        <span style="font-size: x-small;"><i class="fa-solid fa-circle-dot" title="waiting" style="color: yellow; font-size: small ;"></i></span>
+                                    <%}%>
+                                    <%= item.listitem %>
                             </div>
-                            <div class="priority-div col-lg-4 col-md-3 col-sm-12">
-                                <b>Medium Priority</b>
-                            </div>
-                        </div>
-                    </div>
-                <%}else if(item.priority==="high"){%>
-                    <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
-                        <div class="row 3">
-                            <div class="col-lg-8 col-md-9 col-sm-12 ">
-                                <%= item.listitem %>
-                            </div>
-                            <div class="priority-div col-lg-4 col-md-3 col-sm-12">
-                               <b>High Priority</b>
+                            <div class="priority-div col-lg-4 col-md-3 col-sm-12 ">
+                                <b>Low Priority</b>
                             </div>
                         </div>
                     </div>
-                <%}%>
+                    <%}else if(item.priority==="medium" ){%>
+                        <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
+                            <div class="row 3">
+                                <div class="col-lg-8 col-md-9 col-sm-12 ">
+                                    <%if(item.listStatus==="process"){%>
+                                        <span style="font-size: x-small;"><i class="fa-solid fa-circle-dot" title="In process" style="color: green; font-size: small ;"></i></span>
+                                        <%}else{%>
+                                            <span style="font-size: x-small;"><i class="fa-solid fa-circle-dot" title="waiting" style="color: yellow;  font-size: small ;"></i></span>
+                                        <%}%>                                   
+                                        <%= item.listitem %>
+                                </div>
+                                <div class="priority-div col-lg-4 col-md-3 col-sm-12">
+                                    <b>Medium Priority</b>
+                                </div>
+                            </div>
+                        </div>
+                        <%}else if(item.priority==="high" ){%>
+                            <div class="container  border p-3 mb-2" id="list" style="border-radius: 18px; ">
+                                <div class="row 3">
+                                    <div class="col-lg-8 col-md-9 col-sm-12 ">
+                                        <%if(item.listStatus==="process"){%>
+                                        <span style="font-size: x-small;"><i class="fa-solid fa-circle-dot" title="In process" style="color: green; font-size: small ;"></i></span>
+                                        <%}else{%>
+                                            <span style="font-size: x-small;"><i class="fa-solid fa-circle-dot" title="waiting" style="color: yellow; font-size: small ;"></i> </span>
+                                        <%}%>
+                                        <%= item.listitem %>
+                                    </div>
+                                    <div class="priority-div col-lg-4 col-md-3 col-sm-12">
+                                        <b>High Priority</b>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <%}%>
 
 
 
-                <% } %>
+                                <% } %>
 
-                    <%-include('./partials/footer')%>
+                                    <%-include('./partials/footer')%>

@@ -3,22 +3,28 @@
             <%-include('./partials/flash')%>
             
                 <div class="container mb-5">
-                    <h2 class="mt-5 mb-4"> Your Added List </h2>
+                    <h1 class="mt-5 mb-4"> Your Added List </h1>
 
                     <!-- Add Todo Form -->
                     <form id="addTodoForm" action="/show" method="POST">
                         <div class="row ">
 
-                            <div class="col-lg-8 col-md-9 col-sm-12 mb-2">
+                            <div class="col-lg-8 col-md-8 col-sm-12 mb-2">
                                 <input type="text" class="form-control" name="listitem" required id="listitem"
                                     placeholder="Enter Text ">
                             </div>
 
-                            <div class="col-lg-4 col-md-3 col-sm-12 mb-2">
+                            <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
                                 <select class="form-control " name="priority" required id="prioritySelect">
                                     <option value="low">Low Priority</option>
                                     <option value="medium" >Medium Priority</option>
                                     <option value="high">High Priority</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
+                                <select class="form-control " name="listStatus" required id="statusSelect">
+                                    <option value="process">Process</option>
+                                    <option value="waiting" >Waiting</option>
                                 </select>
                             </div>
 
@@ -27,6 +33,10 @@
                             </div>
                         </div>
                     </form>
+
+
+
+
 
                 <div class="mt-4">
                 <% for(let item of items) { %>
@@ -47,7 +57,7 @@
                                             </form>
                                     </div>
                                     <div >
-                                        <b>Medium Priority</b>
+                                        <b>Low Priority</b>
                                     </div>
                                 </div>
 

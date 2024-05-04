@@ -7,30 +7,38 @@
             <body>
                 <div class="container ">
 
-                    <h2 class="mt-5 mb-4"> Edit Your List </h2>
+                    <h1 class="mt-5 mb-4"> Edit Your List </h1>
 
                     <!-- Add Todo Form -->
-                    <form id="addTodoForm" action="/show/<%=foundList._id%>/edit?_method=PATCH" method="POST">
+                    <form id="addTodoForm" action="/show/<%=list._id%>/edit?_method=PATCH" method="POST">
                         <div class="row ">
 
-                            <div class="col-lg-8 col-md-9 col-sm-12 mb-2">
+                            <div class="col-lg-8 col-md-8 col-sm-12 mb-2">
                                 <textarea type="text" name="listitem" id="floatingTextarea" cols="30" required rows="1"
-                                    placeholder="Enter Text " class="form-control"> <%=foundList.listitem%> </textarea>
+                                    placeholder="Enter Text " class="form-control"> <%=list.listitem%> </textarea>
                             </div>
 
-                            <div class="col-lg-4 col-md-3 col-sm-12 mb-2">
+                            <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
                                 <select class="form-control " name="priority" required id="prioritySelect">
                                     <option value="low">Low Priority</option>
                                     <option value="medium">Medium Priority</option>
                                     <option value="high">High Priority</option>
                                 </select>
                             </div>
-
+                            <div class="col-lg-2 col-md-2 col-sm-12 mb-2">
+                                <select class="form-control " name="listStatus" required id="statusSelect">
+                                    <option value="process">Process</option>
+                                    <option value="waiting" >Waiting</option>
+                                </select>
+                            </div>
                             <div class="mt-2">
                                 <button type="submit" class="btn btn-primary">Add Todo</button>
                             </div>
                         </div>
                     </form>
+
+
+
 
                     <div class="mt-4">
                         <% for(let item of items) { %>

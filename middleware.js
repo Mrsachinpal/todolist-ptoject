@@ -19,7 +19,7 @@ let isListAuthor = async (req, res, next) => {
         }
         // Continue with authorization check if list is found
         if (!list.author.equals(req.user._id)) {
-            return res.redirect('/home');
+            return res.redirect('/login');
         }
         next(); // Allow request to proceed if authorized
     } catch (err) {

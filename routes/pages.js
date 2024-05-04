@@ -4,7 +4,7 @@ const { islogin, userId, isListAuthor } = require('../middleware');
 const User = require('../models/Users');
 const router = express.Router();
 
-router.get('/', islogin, (req, res) => {
+router.get('/', islogin, (req, res) => {            //redirect to home page
     try {
         res.redirect('/home');
     }
@@ -13,7 +13,7 @@ router.get('/', islogin, (req, res) => {
     }
 })
 
-router.get('/home', islogin, async (req, res) => {     // showing all list on home page 
+router.get('/home', islogin, async (req, res) => {      // showing all list on home page 
     try {
         let items = await List.find({ author: req.user._id })
         res.render('home', { items })
@@ -23,7 +23,7 @@ router.get('/home', islogin, async (req, res) => {     // showing all list on ho
     }
 })
 
-router.get('/show', islogin, async (req, res) => {     // showing all list on show page 
+router.get('/show', islogin, async (req, res) => {      // showing all list on Add list page (edit/delete button)
     try {
         let items = await List.find({ author: req.user._id })
         res.render('show', { items })
@@ -33,10 +33,11 @@ router.get('/show', islogin, async (req, res) => {     // showing all list on sh
     }
 })
 
-router.post('/show', islogin, (req, res) => {
+
+router.post('/show', islogin, (req, res) => {           //add todo list in database
     try {
-        let { listitem, priority } = req.body;
-        List.create({ listitem, author: req.user._id, priority });
+        let { listitem, priority,listStatus } = req.body;
+        List.create({ listitem,listStatus ,author: req.user._id, priority });
 
         res.redirect('/show');
     }
@@ -45,23 +46,23 @@ router.post('/show', islogin, (req, res) => {
     }
 })
 
-router.get('/show/:id/edit', isListAuthor, islogin, async (req, res) => {
+router.get('/show/:id/edit', islogin, isListAuthor, async (req, res) => {
     try {
         let { id } = req.params;
-        let items = await List.find({})
-        let foundList = await List.findById(id);
-        res.render('edit', { foundList, items })
+        let list = await List.findById(id);         // for particular list
+        let items = await List.find({ author: req.user._id })           //for all list of particular user
+        res.render('edit', {list,items })
     }
     catch (e) {
         res.status(500).render('error', { err: e.message });
     }
 })
 
-router.patch('/show/:id/edit', islogin, async (req, res) => {
+router.patch('/show/:id/edit', islogin,isListAuthor, async (req, res) => {
     try {
         let { id } = req.params;
-        let { listitem, priority } = req.body;
-        await List.findByIdAndUpdate(id, { listitem, priority })
+        let { listitem, priority,listStatus } = req.body;
+        await List.findByIdAndUpdate(id, { listitem, priority,listStatus })
         res.redirect('/show')
     }
     catch (e) {
